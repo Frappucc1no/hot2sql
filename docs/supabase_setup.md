@@ -5,14 +5,14 @@
 ### 1. 注册Supabase账号
 1. 访问 https://supabase.com
 2. 点击 "Start your project"
-3. 使用GitHub账号登录（推荐，方便后续集成）
+3. 使用GitHub账号登录
 
 ### 2. 创建新项目
 1. 点击 "New Project"
 2. 填写项目信息：
    - **Name**: hot2sql（或你喜欢的名字）
-   - **Database Password**: 设置一个强密码（保存好，后面会用到）
-   - **Region**: 选择离你最近的区域（如 Singapore）
+   - **Database Password**: 设置一个强密码
+   - **Region**: 选择离你最近的区域
 3. 点击 "Create new project"
 4. 等待项目创建完成（约1-2分钟）
 
@@ -38,66 +38,13 @@ SUPABASE_KEY=your-anon-key-here
 
 ## 三、创建数据库表
 
-### 方法一：使用SQL Editor（推荐）
+### 使用SQL Editor
 
 1. 在Supabase Dashboard中，点击左侧 "SQL Editor"
 2. 点击 "New query"
 3. 复制 `scripts/init_db.sql` 文件中的内容
 4. 粘贴到SQL Editor中
 5. 点击 "Run" 执行
-
-### 方法二：使用Table Editor
-
-#### 创建 hot_search_snapshots 表
-
-1. 点击左侧 "Table Editor"
-2. 点击 "Create a new table"
-3. 填写表名：`hot_search_snapshots`
-4. 添加以下列：
-
-| 列名 | 类型 | 是否必填 | 默认值 |
-|------|------|---------|--------|
-| platform | varchar | 是 | - |
-| rank | int8 | 是 | - |
-| title | text | 是 | - |
-| hot_value | int8 | 否 | - |
-| url | text | 否 | - |
-| description | text | 否 | - |
-| crawled_at | timestamptz | 否 | now() |
-| published_at | timestamptz | 否 | - |
-| author | varchar | 否 | - |
-| view_count | int8 | 否 | - |
-| comment_count | int8 | 否 | - |
-| like_count | int8 | 否 | - |
-| share_count | int8 | 否 | - |
-| category | varchar | 否 | - |
-| labels | text[] | 否 | - |
-| platform_specific | jsonb | 否 | - |
-| raw_data | jsonb | 是 | - |
-
-5. 点击 "Save"
-
-#### 创建 hot_topics 表
-
-1. 点击 "Create a new table"
-2. 填写表名：`hot_topics`
-3. 添加以下列：
-
-| 列名 | 类型 | 是否必填 | 默认值 |
-|------|------|---------|--------|
-| platform | varchar | 是 | - |
-| title | text | 是 | - |
-| topic_hash | varchar | 是 | - |
-| first_seen_at | timestamptz | 否 | - |
-| last_seen_at | timestamptz | 否 | - |
-| appearance_count | int8 | 否 | 1 |
-| max_rank | int8 | 否 | - |
-| max_hot_value | int8 | 否 | - |
-| latest_description | text | 否 | - |
-| latest_url | text | 否 | - |
-
-4. 设置 `topic_hash` 为唯一（点击列设置 → Is Unique）
-5. 点击 "Save"
 
 ---
 
@@ -150,7 +97,7 @@ python main.py
 
 ### 1. 在Supabase Dashboard中查看
 1. 点击左侧 "Table Editor"
-2. 选择 `hot_search_snapshots` 或 `hot_topics`
+2. 选择数据表
 3. 查看数据是否正确插入
 
 ### 2. 使用SQL查询
@@ -188,18 +135,7 @@ GROUP BY platform;
 DELETE FROM hot_search_snapshots 
 WHERE crawled_at < NOW() - INTERVAL '7 days';
 ```
-
 ---
 
-## 八、下一步
-
-1. ✅ 完成Supabase配置
-2. ✅ 测试本地运行
-3. ✅ 推送到GitHub
-4. ✅ 检查GitHub Actions运行状态
-5. 🔄 开始数据沉淀
-
----
-
-**文档版本**: v1.0  
-**更新日期**: 2026-02-11
+**文档版本**: v2.0  
+**更新日期**: 2026-02-12
