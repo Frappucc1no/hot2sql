@@ -3,7 +3,7 @@
 
 原始字段: desc, desc_extr, pic, icon, card_type, itemid, scheme, actionlog
 天然缺失: 描述、发布时间、作者、互动数据
-注意: 需要Cookie认证，pic字段用于过滤真实热搜
+注意: 需要Cookie认证，pic字段用于过滤真实热搜；desc_extr可能包含前缀文字
 """
 import re
 import requests
@@ -11,6 +11,22 @@ from datetime import datetime
 from urllib.parse import quote
 
 API_URL = "https://m.weibo.cn/api/container/getIndex?containerid=106003type%3D25%26t%3D3%26disable_hot%3D1%26filter_type%3Drealtimehot"
+
+COOKIE = 'WEIBOCN_FROM=1110006030; SUB=_2AkMe1h3tf8NxqwFRmvsXxG7ia4h2wwrEieKoiuw2JRM3HRl-yT9kqnc9tRB6NVYzAmxCM1izZSWe9-xcPQmmL_NGEnIl; SUBP=0033WrSXqPxfM72-Ws9jqgMF55529P9D9WhR9EPgz3BDPWy-YHwFuiIb; MLOGIN=0; _T_WM=38152265571; XSRF-TOKEN=86baeb; M_WEIBOCN_PARAMS=luicode%3D10000011%26lfid%3D102803%26launchid%3D10000360-page_H5%26fid%3D106003type%253D25%2526t%253D3%2526disable_hot%253D1%2526filter_type%253Drealtimehot%26uicode%3D10000011'
+
+
+def parse_hot_value(desc_extr):
+    """解析热度值，处理 '剧集 784633' 或纯数字格式"""
+    if not desc_extr:
+        return 0, None
+    
+    desc_extr_str = str(desc_extr)
+    
+    match = re.search(r'(\d+)', desc_extr_str)
+    if match:
+        return int(match.group(1)), desc_extr_str
+    
+    return 0, desc_extr_str
 
 
 def fetch():
@@ -35,7 +51,7 @@ def fetch():
 
         desc = item.get('desc', '')
         desc_extr = item.get('desc_extr', 0)
-        hot_value = int(desc_extr) if desc_extr else 0
+        hot_value, hot_value_text = parse_hot_value(desc_extr)
         
         platform_fields = {
             'pic': pic,
@@ -56,7 +72,7 @@ def fetch():
             'title': desc,
             'title_source': 'desc',
             'hot_value': hot_value,
-            'hot_value_text': str(desc_extr),
+            'hot_value_text': hot_value_text,
             'hot_value_source': 'desc_extr',
             'description': None,
             'description_source': None,
