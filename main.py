@@ -1,4 +1,9 @@
-"""主入口脚本"""
+"""
+主入口脚本 v2.0.0
+更新时间: 2026-02-12
+
+三表设计：crawl_sessions, hot_search_snapshots, hot_topics
+"""
 import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -45,10 +50,14 @@ def crawl_platform(platform):
 
         db = HotSearchDB()
         crawled_at = datetime.now().isoformat()
-        snapshot_count, topic_count = db.process_platform_data(platform, items, crawled_at)
+        snapshot_count, topic_count, success = db.process_platform_data(platform, items, crawled_at)
 
-        print(f"[{platform}] 处理完成: {snapshot_count} snapshots, {topic_count} topics")
-        return snapshot_count, topic_count, True
+        if success:
+            print(f"[{platform}] 处理完成: {snapshot_count} snapshots, {topic_count} topics")
+        else:
+            print(f"[{platform}] 处理失败")
+
+        return snapshot_count, topic_count, success
 
     except Exception as e:
         print(f"[{platform}] 爬取失败: {e}")
@@ -60,7 +69,7 @@ def crawl_platform(platform):
 def crawl_all():
     """爬取所有平台"""
     print("\n" + "="*60)
-    print("开始爬取所有平台热榜数据")
+    print("开始爬取所有平台热榜数据 v2.0.0")
     print("="*60)
 
     total_snapshots = 0
