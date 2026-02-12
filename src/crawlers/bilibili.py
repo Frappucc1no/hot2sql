@@ -11,7 +11,7 @@ def fetch():
     video_list = resp.json().get('data', {}).get('list', [])
 
     result = []
-    for idx, video in enumerate(video_list, 1):
+    for idx, video in enumerate(video_list[:50], 1):
         stat = video.get('stat', {})
         owner = video.get('owner', {})
 
