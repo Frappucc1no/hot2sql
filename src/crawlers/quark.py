@@ -1,7 +1,5 @@
 """
 夸克热榜爬虫
-版本: v2.0.0
-更新时间: 2026-02-12
 
 原始字段: 149个字段，精简后保留13个核心字段
 保留字段: id, title, summary, content, source_name, publish_time, category, tags, like_cnt, cmt_cnt, view_cnt, wm_author
@@ -13,8 +11,6 @@ import re
 from datetime import datetime
 
 API_URL = "https://iflow.quark.cn/iflow/api/v1/article/aggregation"
-
-CRAWLER_VERSION = "2.0.0"
 
 
 def clean_html(html):

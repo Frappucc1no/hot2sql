@@ -1,6 +1,5 @@
 """
-主入口脚本 v2.0.0
-更新时间: 2026-02-12
+主入口脚本
 
 三表设计：crawl_sessions, hot_search_snapshots, hot_topics
 """
@@ -10,6 +9,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from datetime import datetime
 from src.database import HotSearchDB
+from src.version import __version__
 from src.crawlers import (
     fetch_baidu, fetch_weibo, fetch_douyin,
     fetch_bilibili, fetch_zhihu, fetch_toutiao,
@@ -69,7 +69,7 @@ def crawl_platform(platform):
 def crawl_all():
     """爬取所有平台"""
     print("\n" + "="*60)
-    print("开始爬取所有平台热榜数据 v2.0.0")
+    print(f"开始爬取所有平台热榜数据 v{__version__}")
     print("="*60)
 
     total_snapshots = 0

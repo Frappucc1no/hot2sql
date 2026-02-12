@@ -1,7 +1,5 @@
 """
 百度热搜爬虫
-版本: v2.0.0
-更新时间: 2026-02-12
 
 原始字段: word, hotScore, desc, url, img, hotTag, hotChange, index, query, appUrl, rawUrl, indexUrl, hotTagImg, show
 天然缺失: 发布时间、作者、互动数据
@@ -10,8 +8,6 @@ import requests
 from datetime import datetime
 
 API_URL = "https://top.baidu.com/api/board?platform=pc&tab=realtime"
-
-CRAWLER_VERSION = "2.0.0"
 
 
 def fetch():

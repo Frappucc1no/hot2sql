@@ -1,7 +1,5 @@
 """
 百度贴吧话题榜爬虫
-版本: v2.0.0
-更新时间: 2026-02-12
 
 原始字段: topic_name, topic_desc, abstract, topic_id, discuss_num, content_num, create_time, tag, is_video_topic, topic_pic, topic_url
 天然缺失: 作者
@@ -11,8 +9,6 @@ import requests
 from datetime import datetime
 
 API_URL = "https://tieba.baidu.com/hottopic/browse/topicList"
-
-CRAWLER_VERSION = "2.0.0"
 
 TAG_MAP = {0: '', 1: '热', 2: '新', 3: '爆', 4: '荐', 5: '精', 6: '置顶'}
 

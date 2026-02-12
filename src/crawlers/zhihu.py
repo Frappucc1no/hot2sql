@@ -1,7 +1,5 @@
 """
 知乎热榜爬虫
-版本: v2.0.0
-更新时间: 2026-02-12
 
 原始字段: title, excerpt, detail_text, url, created, answer_count, follower_count, comment_count, id
 天然缺失: 作者
@@ -12,8 +10,6 @@ import re
 from datetime import datetime
 
 API_URL = "https://api.zhihu.com/topstory/hot-lists/total?limit=30"
-
-CRAWLER_VERSION = "2.0.0"
 
 
 def parse_hot_value(detail_text):

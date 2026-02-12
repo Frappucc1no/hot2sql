@@ -1,7 +1,5 @@
 """
 小红书热搜爬虫
-版本: v2.0.0
-更新时间: 2026-02-12
 
 原始字段: title, id, score, word_type, rank_change, icon, type, title_img
 天然缺失: 描述、发布时间、作者、互动数据
@@ -21,8 +19,6 @@ HEADERS = {
     'xy-platform-info': 'platform=iOS&version=8.7&build=8070515&deviceId=C323D3A5-6A27-4CE6-AA0E-51C9D4C26A24&bundle=com.xingin.discover',
     'xy-common-params': 'app_id=ECFAAF02&build=8070515&channel=AppStore&deviceId=C323D3A5-6A27-4CE6-AA0E-51C9D4C26A24&device_fingerprint=20230920120211bd7b71a80778509cf4211099ea911000010d2f20f6050264&device_fingerprint1=20230920120211bd7b71a80778509cf4211099ea911000010d2f20f6050264&device_model=phone&fid=1695182528-0-0-63b29d709954a1bb8c8733eb2fb58f29&gid=7dc4f3d168c355f1a886c54a898c6ef21fe7b9a847359afc77fc24ad&identifier_flag=0&lang=zh-Hans&launch_id=716882697&platform=iOS&project_id=ECFAAF&sid=session.1695189743787849952190&t=1695190591&teenager=0&tz=Asia/Shanghai&uis=light&version=8.7',
 }
-
-CRAWLER_VERSION = "2.0.0"
 
 
 def parse_score(score_str):

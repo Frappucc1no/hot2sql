@@ -1,7 +1,5 @@
 """
 B站热门爬虫
-版本: v2.0.0
-更新时间: 2026-02-12
 
 原始字段: title, bvid, aid, desc, pic, tname, pubdate, duration, owner, stat
 天然缺失: 热度值（可用播放量替代）
@@ -11,8 +9,6 @@ import requests
 from datetime import datetime
 
 API_URL = "https://api.bilibili.com/x/web-interface/ranking/v2?rid=0&type=all"
-
-CRAWLER_VERSION = "2.0.0"
 
 
 def fetch():

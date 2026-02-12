@@ -1,7 +1,5 @@
 """
 抖音热榜爬虫
-版本: v2.0.0
-更新时间: 2026-02-12
 
 原始字段: word, hot_value, label, event_time, view_count, video_count
 天然缺失: 描述、发布时间、作者
@@ -11,8 +9,6 @@ import requests
 from datetime import datetime
 
 API_URL = "https://www.iesdouyin.com/web/api/v2/hotsearch/billboard/word/"
-
-CRAWLER_VERSION = "2.0.0"
 
 
 def fetch():

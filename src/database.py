@@ -1,7 +1,5 @@
 """
-数据库模块 v2.0.0
-更新时间: 2026-02-12
-
+数据库模块
 三表设计：
 - crawl_sessions: 爬取任务表
 - hot_search_snapshots: 快照表
@@ -13,8 +11,9 @@ import hashlib
 import json
 import uuid
 from .config import SUPABASE_URL, SUPABASE_KEY
+from .version import __version__
 
-CRAWLER_VERSION = "2.0.0"
+CRAWLER_VERSION = __version__
 
 
 class HotSearchDB:

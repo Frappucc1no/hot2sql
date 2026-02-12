@@ -1,7 +1,5 @@
 """
 头条热搜爬虫
-版本: v2.0.0
-更新时间: 2026-02-12
 
 原始字段: Title, HotValue, ClusterId, QueryWord, Url, Label, LabelDesc, InterestCategory, Image
 天然缺失: 描述、发布时间、作者、互动数据
@@ -11,8 +9,6 @@ import requests
 from datetime import datetime
 
 API_URL = "https://www.toutiao.com/hot-event/hot-board/"
-
-CRAWLER_VERSION = "2.0.0"
 
 
 def fetch():

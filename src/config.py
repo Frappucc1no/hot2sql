@@ -1,9 +1,9 @@
 """
-配置文件 v2.0.0
-更新时间: 2026-02-12
+配置文件
 """
 import os
 from dotenv import load_dotenv
+from .version import __version__
 
 load_dotenv()
 
@@ -24,4 +24,4 @@ PLATFORMS = {
 
 CRAWL_INTERVAL = 30
 
-CRAWLER_VERSION = "2.0.0"
+CRAWLER_VERSION = __version__
